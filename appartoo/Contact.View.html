@@ -1,0 +1,58 @@
+    <h1>Liste des Contacts</h1>
+    <div >
+        Trier par : <select ng-model="sortColumn">
+        <option value="email">Email</option>
+        <option value="adresse">Adresse</option>
+        <option value="telephone">Telephone</option>
+        <option value="siteWeb">Site Web</option>
+    </select>
+        <br /><br />
+        <table>
+            <thead>
+            <tr>
+                <th ng-click="sortData('email')">E-mail<div ng-class="getSortClass('email')"> </div></th>
+                <th ng-click="sortData('adresse')">Adresse<div ng-class="getSortClass('adresse')"> </div></th>
+                <th ng-click="sortData('telephone')">Adresse<div ng-class="getSortClass('telephone')"> </div></th>
+                <th ng-click="sortData('siteWeb')">Site Web<div ng-class="getSortClass('siteWeb')"> </div></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="contact in contacts |limitTo : rowLimit |orderBy : sortColumn : reverseSort | filter : searchText">
+                <td>{{contact.email}}</td>
+                <td>{{contact.adresse }}</td>
+                <td>{{contact.telephone }}</td>
+                <td>{{contact.siteWeb }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h1>Recherche Contact</h1>
+        <hr>
+        <label>Tous les criteres: <input ng-model="search.$"></label> <br>
+        <label>Par Email  <input ng-model="search.email"></label><br>
+        <label>Par Adresse  <input ng-model="search.adresse"></label><br>
+        <hr>
+        <table id="searchObjResults">
+            <tr><th>Email</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>Site Web</th>
+            </tr>
+            <tr ng-repeat="contact in contacts | filter:search:strict">
+                <td>{{contact.email}}</td>
+                <td>{{contact.adresse   }}</td>
+                <td>{{contact.telephone   }}</td>
+                <td>{{contact.siteWeb   }}</td>
+            </tr>
+        </table>
+</div>
+    <h1>Ajouter Contact</h1>
+
+    <hr>
+        <label>E-mail </label><input ng-model="contact.email" width="200px" ><br>
+        <label>Adresse</label><input ng-model="contact.adresse"  width="200px" ><br>
+        <label>Telephone</label><input ng-model="contact.telephone"  width="200px" ><br>
+        <label>Site Web</label> <input ng-model="contact.siteWeb"  width="200px" ><br>
+        <input ng-model="contact.idUser"  hidden><br>
+        <hr>
+        <input type="submit" value="Ajouter" class="waves-effect waves-light btn" onClick="window.location.reload()"  ng-click="add()">
+

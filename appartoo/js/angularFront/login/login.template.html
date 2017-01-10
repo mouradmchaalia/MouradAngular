@@ -1,0 +1,79 @@
+<div class="top-header" id="header">
+    <div class="wrap">
+        <div class="top-header-left">
+            <ul>
+                <span ng-if="$ctrl.isConnected">
+                    <li><a ng-click="$ctrl.disconnect()" href="#"><span> </span> Deconnexion</a></li>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Editer</a></li>
+                </span>
+
+                <span ng-if="!$ctrl.isConnected">
+                    <li><a href="#/login" ng-click="$ctrl.connectForm()"><span> </span> Connexion </a></li>
+                    <li><p><span> </span>Pas un membre ? </p>&nbsp;<a class="reg" href="#"> Inscription </a>
+                    </li>
+                </span>
+
+                <div class="clear"></div>
+                <div ng-if="$ctrl.showLoginForm">
+                    <input  type="text" ng-model="$ctrl.body.username">
+                    <input type="text" ng-model="$ctrl.body.password">
+                    <button class="btn" ng-click="$ctrl.submit()">Submit</button>
+                </div>
+            </ul>
+        </div>
+        <div class="top-header-right">
+            <ul>
+                <li><a class="face" href="https://www.facebook.com/Appartoo-433382936794027/"
+                       target="_blank"><span> </span></a></li>
+                <li><a class="twit" href="https://twitter.com/appartoo?lang=en" target="_blank"><span> </span></a></li>
+                <li><a class="thum" href="http://www.appartoo.com/" target="_blank"><span> </span></a></li>
+                <li><a class="pin" href="https://fr.pinterest.com/appartoo/" target="_blank"><span> </span></a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="header">
+    <div class="wrap">
+        <!--- start-logo---->
+        <div ng-if="$ctrl.isConnected">
+            <label for="search">Recherche</label>
+            <input type="text" name="search" ng-model="$ctrl.searchQuery">
+            <table>
+                <thead>
+                <th ng-click="$ctrl.setOrderQuery('id')">id</th>
+                <th ng-click="$ctrl.setOrderQuery('email')">Email</th>
+                <th ng-click="$ctrl.setOrderQuery('adresse')">Adresse</th>
+                <th ng-click="$ctrl.setOrderQuery('telephone')">Telephone</th>
+                <th ng-click="$ctrl.setOrderQuery('siteWeb')">Site Web</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="contact in $ctrl.contacts | filter:$ctrl.searchQuery | orderBy : $ctrl.orderProp">
+                    <td>{{contact.id}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.adresse}}</td>
+                    <td>{{contact.telephone}}</td>
+                    <td>{{contact.siteWeb}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--- //End-logo---->
+        <!--- start-top-nav---->
+        <div class="top-nav">
+            <ul class="flexy-menu thick orange">
+
+                <!-- <li><a href="">Contacts</a></li>-->
+
+            </ul>
+
+        </div>
+        <!----search-scripts---->
+
+        <!----//search-scripts---->
+    </div>
+    <!--- //End-top-nav---->
+    <div class="clear"></div>
+</div>
